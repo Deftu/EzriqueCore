@@ -1,0 +1,14 @@
+[versions]
+kord = "0.13.1"
+
+gson = "2.10.1"
+enhancedeventbus = "1.2.0"
+okhttp = "4.10.0"
+
+postgres = "42.7.1"
+exposed = "0.41.1"
+
+sentry = "7.3.0"
+
+slf4j = "2.0.5"
+log4j = "2.20.0"
