@@ -1,11 +1,12 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import dev.deftu.gradle.utils.getDgtPublishingPassword
+import dev.deftu.gradle.utils.getDgtPublishingUsername
 
 plugins {
     java
-    kotlin("jvm") version("1.9.10")
-    val dgt = "1.22.4"
+    kotlin("jvm") version("2.0.0")
+    val dgt = "2.2.3"
     id("dev.deftu.gradle.tools") version(dgt)
-    id("dev.deftu.gradle.tools.maven-publishing") version(dgt)
+    id("dev.deftu.gradle.tools.publishing.maven") version(dgt)
 }
 
 dependencies {
@@ -30,22 +31,13 @@ dependencies {
     api("org.apache.logging.log4j:log4j-api:${libs.versions.log4j.get()}")
     api("org.apache.logging.log4j:log4j-core:${libs.versions.log4j.get()}")
     api("org.apache.logging.log4j:log4j-slf4j-impl:${libs.versions.log4j.get()}")
+    api("org.apache.logging.log4j:log4j-slf4j2-impl:${libs.versions.log4j.get()}")
 }
 
 publishing {
     repositories {
-        fun getPublishingUsername(): String? {
-            val property = project.findProperty("deftu.publishing.username")
-            return property?.toString() ?: System.getenv("DEFTU_PUBLISHING_USERNAME")
-        }
-
-        fun getPublishingPassword(): String? {
-            val property = project.findProperty("deftu.publishing.password")
-            return property?.toString() ?: System.getenv("DEFTU_PUBLISHING_PASSWORD")
-        }
-
-        val publishingUsername = getPublishingUsername()
-        val publishingPassword = getPublishingPassword()
+        val publishingUsername = getDgtPublishingUsername()
+        val publishingPassword = getDgtPublishingPassword()
         if (publishingUsername != null && publishingPassword != null) {
             fun MavenArtifactRepository.applyCredentials() {
                 authentication.create<BasicAuthentication>("basic")
@@ -56,8 +48,8 @@ publishing {
             }
 
             maven {
-                name = "DeftuInternal"
-                url = uri("https://maven.deftu.dev/internal")
+                name = "DeftuInternalExposed"
+                url = uri("https://maven.deftu.dev/internal-exposed")
                 applyCredentials()
             }
         }

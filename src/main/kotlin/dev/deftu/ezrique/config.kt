@@ -14,7 +14,7 @@ val configFile: File
         return File(fileName)
     }
 
-private var _config: JsonObject? = null
+private var configJson: JsonObject? = null
     get() {
         if (field == null) {
             config()
@@ -24,7 +24,7 @@ private var _config: JsonObject? = null
     }
 
 val config: JsonObject
-    get() = _config!!
+    get() = configJson!!
 
 val token: String
     get() {
@@ -44,5 +44,5 @@ private fun config() {
     val json = JsonParser.parseString(text)
     if (!json.isJsonObject) error("Config file \"${configFile.absolutePath}\" is not a valid JSON object!")
 
-    _config = json.asJsonObject
+    configJson = json.asJsonObject
 }
