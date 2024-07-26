@@ -12,7 +12,7 @@ suspend fun Member.checkPermissions(
 ): Boolean {
     if (this.permissions?.contains(permissions) == false) {
         response?.edit {
-            errorEmbed {
+            stateEmbed(EmbedState.ERROR) {
                 title = "Missing permissions"
                 description = buildString {
                     append("You are missing the following permissions:\n")
@@ -35,7 +35,7 @@ suspend fun Member.checkPermission(
 ): Boolean {
     if (this.permissions?.contains(permission) == false) {
         response?.edit {
-            errorEmbed {
+            stateEmbed(EmbedState.ERROR) {
                 title = "Missing permission"
                 description = "You are missing the ${permission::class.java.simpleName} permission."
             }
