@@ -5,20 +5,19 @@ import dev.kord.rest.builder.message.EmbedBuilder
 import dev.kord.rest.builder.message.MessageBuilder
 import dev.kord.rest.builder.message.embed
 
-inline fun MessageBuilder.successEmbed(
-    builder: EmbedBuilder.() -> Unit
-) {
-    embed {
-        color = Color(SUCCESS_COLOR)
-        builder()
-    }
+enum class EmbedState(val color: Int) {
+
+    SUCCESS(SUCCESS_COLOR),
+    ERROR(ERROR_COLOR)
+
 }
 
-inline fun MessageBuilder.errorEmbed(
+inline fun MessageBuilder.stateEmbed(
+    state: EmbedState,
     builder: EmbedBuilder.() -> Unit
 ) {
     embed {
-        color = Color(ERROR_COLOR)
+        color = Color(state.color)
         builder()
     }
 }

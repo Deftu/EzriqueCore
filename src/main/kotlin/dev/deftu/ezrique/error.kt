@@ -21,7 +21,7 @@ suspend fun handleError(
 ): Message? {
     val sentryId = maybeCaptureException(throwable)
     return response?.edit {
-        errorEmbed {
+        stateEmbed(EmbedState.ERROR) {
             constructErrorEmbed(code, sentryId)
         }
     }?.message
@@ -34,7 +34,7 @@ suspend fun handleError(
 ): Message? {
     val sentryId = maybeCaptureException(throwable)
     return response?.respond {
-        errorEmbed {
+        stateEmbed(EmbedState.ERROR) {
             constructErrorEmbed(code, sentryId)
         }
     }?.message
@@ -47,7 +47,7 @@ suspend fun handleError(
 ): Message {
     val sentryId = maybeCaptureException(throwable)
     return message.reply {
-        errorEmbed {
+        stateEmbed(EmbedState.ERROR) {
             constructErrorEmbed(code, sentryId)
         }
     }
