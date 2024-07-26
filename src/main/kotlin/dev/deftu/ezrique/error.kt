@@ -30,7 +30,7 @@ suspend fun handleError(
 suspend fun handleError(
     throwable: Throwable,
     code: ErrorCode?,
-    response: DeferredMessageInteractionResponseBehavior? = null
+    response: DeferredMessageInteractionResponseBehavior?
 ): Message? {
     val sentryId = maybeCaptureException(throwable)
     return response?.respond {
