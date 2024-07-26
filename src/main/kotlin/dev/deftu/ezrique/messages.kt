@@ -5,7 +5,7 @@ import dev.kord.rest.builder.message.EmbedBuilder
 import dev.kord.rest.builder.message.MessageBuilder
 import dev.kord.rest.builder.message.embed
 
-fun MessageBuilder.successEmbed(
+inline fun MessageBuilder.successEmbed(
     builder: EmbedBuilder.() -> Unit
 ) {
     embed {
@@ -14,7 +14,7 @@ fun MessageBuilder.successEmbed(
     }
 }
 
-fun MessageBuilder.errorEmbed(
+inline fun MessageBuilder.errorEmbed(
     builder: EmbedBuilder.() -> Unit
 ) {
     embed {
