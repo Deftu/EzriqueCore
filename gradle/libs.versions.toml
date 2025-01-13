@@ -1,12 +1,11 @@
 [versions]
-kord = "0.13.1"
+kord = "0.15.0"
 
 gson = "2.10.1"
-enhancedeventbus = "1.2.0"
 okhttp = "4.12.0"
+jedis = "5.0.2"
 
-postgres = "42.7.1"
-exposed = "0.41.1"
+ktor = "2.3.12"
 
 sentry = "7.3.0"
 
